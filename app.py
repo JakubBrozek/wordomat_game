@@ -9,3 +9,10 @@ class Dictionary:
             print("Lista słów jest pusta ")
             return
         return self.dictionary
+
+def main():
+    dictionary = Dictionary()
+    word_list = dictionary.get_dictionary()
+
+
+main()
