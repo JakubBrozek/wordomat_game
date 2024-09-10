@@ -37,5 +37,17 @@ def get_user_word(words, letter):
 def main():
     dictionary = Dictionary()
     word_list = dictionary.get_dictionary()
+    current_letter = random.choice(dictionary.get_alphabet())
+    while True:
+        enemy_word = enemy_move(word_list, current_letter)
+        print("Słowo przeciwnika:" ,enemy_word)
+        current_letter = enemy_word[-1]
+        word_list.remove(enemy_word)
+
+        user_word = get_user_word(word_list, current_letter)
+        current_letter = user_word[-1]
+        word_list.remove(user_word)
+
+        print("Ostatnie słowo:", user_word)
 
 main()
