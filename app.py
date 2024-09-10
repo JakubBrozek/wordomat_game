@@ -1,5 +1,7 @@
 import random
 
+HARD_STARTING_LETTER = 'y'
+
 class Dictionary:
     def __init__(self):
         with open('dictionary.txt', 'r', encoding='utf-8') as words:
@@ -9,9 +11,13 @@ class Dictionary:
             print("Lista słów jest pusta ")
             return
         return self.dictionary
+
 def enemy_move(words):
-    word = ''
-    return word
+    while True:
+        word = random.choice(words)
+        if not word.endswith(HARD_STARTING_LETTER):
+            return word
+
 def get_user_word(letter):
     while True:
         user_word = input("Podaj słowo zaczynające się na '" + letter + "'")
@@ -21,6 +27,5 @@ def get_user_word(letter):
 def main():
     dictionary = Dictionary()
     word_list = dictionary.get_dictionary()
-
 
 main()
