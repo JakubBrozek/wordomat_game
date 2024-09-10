@@ -24,11 +24,15 @@ def enemy_move(words, letter):
         if word.startswith(letter) and not word.endswith(HARD_STARTING_LETTER):
             return word
 
-def get_user_word(letter):
+def get_user_word(words, letter):
     while True:
-        user_word = input("Podaj słowo zaczynające się na '" + letter + "'")
-        if user_word:
-            return user_word
+        user_word = input("Podaj słowo zaczynające się na '" + letter + "': ").lower()
+        if user_word.startswith(letter):
+            if user_word in words:
+                return user_word
+            print("To słowo nie znajduje się w moim słowniku, wymyśl coś innego: ")
+        else:
+            print("Proszę podać słowo zaczynające się na '" + letter + "': ")
 
 def main():
     dictionary = Dictionary()
