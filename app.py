@@ -17,10 +17,11 @@ class Dictionary:
 
         return alphabet
 
-def enemy_move(words):
+
+def enemy_move(words, letter):
     while True:
         word = random.choice(words)
-        if not word.endswith(HARD_STARTING_LETTER):
+        if word.startswith(letter) and not word.endswith(HARD_STARTING_LETTER):
             return word
 
 def get_user_word(letter):
