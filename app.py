@@ -1,6 +1,28 @@
 import random
+import customtkinter
 
 HARD_STARTING_LETTER = 'y'
+class GUI:
+    def __init__(self):
+        app = customtkinter.CTk()
+
+        customtkinter.set_appearance_mode("dark")
+        customtkinter.set_default_color_theme("dark-blue")
+
+        app.title("Wordomat")
+        app.geometry("800x500")
+
+        self.entry = customtkinter.CTkEntry(app, placeholder_text="Answer", width=500, height=25, corner_radius=5)
+        self.entry.grid(row=0, column=0, padx=20, pady=20)
+
+        send_button = customtkinter.CTkButton(app, text="Accept", command=player_move_send(self))
+        send_button.grid(row=10, column=0, padx=20, pady=20)
+
+        app.grid_columnconfigure(0, weight=1)
+        app.mainloop()
+
+    def gui_get_entry(self):
+        return self.entry.get()
 
 class Dictionary:
     def __init__(self):
@@ -17,6 +39,8 @@ class Dictionary:
 
         return alphabet
 
+def player_move_send(gui):
+    print(gui.gui_get_entry())
 
 def enemy_move(words, letter):
     while True:
@@ -38,6 +62,7 @@ def main():
     dictionary = Dictionary()
     word_list = dictionary.get_dictionary()
     current_letter = random.choice(dictionary.get_alphabet())
+    gui = GUI()
     while True:
         enemy_word = enemy_move(word_list, current_letter)
         print("Słowo przeciwnika:" ,enemy_word)
